@@ -1,4 +1,18 @@
-export default function handler(req, res) {
+// pages/api/course/index.ts
+import { NextApiRequest, NextApiResponse } from 'next';
+
+interface Course {
+  kode_matkul: string;
+  nama_matkul: string;
+  sks: number;
+  jenis: "Wajib" | "Peminatan";
+}
+
+interface CourseData {
+  [semester: string]: Course[];
+}
+
+export default function handler(req: NextApiRequest, res: NextApiResponse<CourseData>) {
   res.status(200).json({
     "Semester 1": [
         {
